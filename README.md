@@ -5,11 +5,11 @@
 </picture>
 
 <p align="center">
-  <strong>A Claude Code skill that transforms plain README files into stunning, website-like experiences</strong>
+  <strong>A Claude Code skill that transforms plain README files<br>into stunning, website-like experiences</strong>
 </p>
 
 <p align="center">
-  <a href="#-what-it-does">What It Does</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-techniques">Techniques</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-installation">Installation</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-usage">Usage</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-examples">Examples</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-license">License</a>
+  <a href="#-how-it-works">How It Works</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-features">Features</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-install">Install</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-techniques">Techniques</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="#-examples">Examples</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://oxgeneral.github.io/PerfectReadme">Website</a>
 </p>
 
 <br>
@@ -22,7 +22,7 @@
 
 <br>
 
-## &nbsp;What It Does
+## &nbsp;The Difference
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/before-after.svg">
@@ -32,9 +32,70 @@
 
 <br>
 
-PerfectReadme is a skill for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) that generates GitHub-ready README files with **animated SVG banners**, **multi-column layouts**, **dark/light theme support**, and a **bold design philosophy** borrowed from the frontend-design skill.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
+  <img alt="" src="./assets/divider-dark.svg" width="100%">
+</picture>
 
-It knows exactly what GitHub's markdown renderer allows and what it strips — so every technique it uses actually works in production.
+<br>
+
+## &nbsp;How It Works
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/steps-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/steps-light.svg">
+  <img alt="Three steps: Analyze, Design, Generate" src="./assets/steps-dark.svg" width="100%">
+</picture>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
+  <img alt="" src="./assets/divider-dark.svg" width="100%">
+</picture>
+
+<br>
+
+## &nbsp;Features
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/features-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/features-light.svg">
+  <img alt="Features: Animated SVG Banners, Dark & Light Themes, Multi-Column Layouts, Bold Design Philosophy" src="./assets/features-dark.svg" width="100%">
+</picture>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
+  <img alt="" src="./assets/divider-dark.svg" width="100%">
+</picture>
+
+<br>
+
+## &nbsp;Install
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/install-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/install-light.svg">
+  <img alt="claude plugin add --from-github oxgeneral/PerfectReadme" src="./assets/install-dark.svg" width="100%">
+</picture>
+
+<details>
+<summary><strong>Manual installation</strong></summary>
+
+<br>
+
+```bash
+git clone https://github.com/oxgeneral/PerfectReadme.git
+mkdir -p ~/.claude/skills/perfect-readme
+cp PerfectReadme/skills/perfect-readme/SKILL.md ~/.claude/skills/perfect-readme/
+```
+
+</details>
 
 <br>
 
@@ -48,161 +109,42 @@ It knows exactly what GitHub's markdown renderer allows and what it strips — s
 
 ## &nbsp;Techniques
 
+The skill builds READMEs as **component-based landing pages** using SVG blocks assembled in markdown.
+
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### SVG + foreignObject
+### Pure SVG + SMIL
 
-The core technique. Full CSS inside SVG files — animations, custom Google Fonts, gradients, `prefers-color-scheme`. GitHub strips all CSS from markdown, but SVG files bypass this entirely.
-
-```xml
-<svg xmlns="..." width="800" height="200">
-  <foreignObject width="100%" height="100%">
-    <div xmlns="...">
-      <style>
-        @keyframes float { ... }
-        .title { animation: float 3s infinite; }
-      </style>
-    </div>
-  </foreignObject>
-</svg>
-```
+Each section is a standalone `.svg` with native SVG elements and SMIL `<animate>` tags. Gradients, filters, patterns, animations — all survive GitHub's camo proxy. No `<foreignObject>`, no CSS, no JavaScript.
 
 </td>
 <td width="50%" valign="top">
 
-### Dark / Light Theme
+### Dark / Light Themes
 
-Native `<picture>` element with `prefers-color-scheme` media queries. Serve different SVGs or images depending on the user's system theme — no JavaScript required.
-
-```html
-<picture>
-  <source media="(prefers-color-scheme: dark)"
-          srcset="./assets/banner-dark.svg">
-  <source media="(prefers-color-scheme: light)"
-          srcset="./assets/banner-light.svg">
-  <img src="./assets/banner-dark.svg">
-</picture>
-```
+Every SVG component has a dark and light variant. The `<picture>` element with `prefers-color-scheme` media queries switches automatically based on the user's system theme.
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### Multi-Column Layouts
+### Component Assembly
 
-HTML tables with `width`, `align`, and `valign` attributes create responsive-ish multi-column layouts. Markdown renders inside `<td>` cells when separated by blank lines.
-
-```html
-<table>
-<tr>
-<td width="33%">Column 1</td>
-<td width="33%">Column 2</td>
-<td width="33%">Column 3</td>
-</tr>
-</table>
-```
+SVG files are visual building blocks — hero banners, feature grids, timelines, install cards, dividers. Markdown text and HTML tables provide structure between blocks.
 
 </td>
 <td width="50%" valign="top">
 
-### Interactive Accordions
+### Landing Page in README
 
-`<details>` and `<summary>` create expandable sections — perfect for API docs, FAQs, and long content. Use `open` attribute for default-expanded sections.
-
-```html
-<details>
-<summary>Click to expand</summary>
-
-Full Markdown content inside,
-including code blocks and images.
-
-</details>
-```
+The result is a README that looks and feels like a designed landing page — with visual hierarchy, color, motion, and polish — all within GitHub's rendering constraints.
 
 </td>
 </tr>
 </table>
-
-<br>
-
-<details>
-<summary><strong>Full list of what GitHub allows &amp; strips</strong></summary>
-
-<br>
-
-**Allowed HTML:** `div`, `table`, `details`, `summary`, `picture`, `source`, `img`, `a`, `br`, `hr`, `kbd`, `sup`, `sub`, `code`, `pre`, `blockquote`, `p`, `span`, `h1`–`h6`, `ul`, `ol`, `li`, `dl`, `dt`, `dd`, `figure`, `figcaption`, `b`, `strong`, `i`, `em`, `del`, `ins`, `mark`, `small`, `abbr`, `time`, `ruby`, `rt`, `rp`
-
-**Allowed attributes:** `href`, `src`, `alt`, `width`, `height`, `align`, `valign`, `colspan`, `rowspan`, `open`, `srcset`, `media`, `type`
-
-**Stripped:** `style`, `class`, `id`, `<script>`, `<iframe>`, `<form>`, `<input>`, `<button>`, `<style>`, `<link>`, `<embed>`, `<object>`, `<audio>`, all event handlers, inline SVG
-
-</details>
-
-<br>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
-  <img alt="" src="./assets/divider-dark.svg" width="100%">
-</picture>
-
-<br>
-
-## &nbsp;Installation
-
-### From GitHub (as a Claude Code plugin)
-
-```bash
-claude plugin add --from-github YOUR_USERNAME/PerfectReadme
-```
-
-### Manual (local skill)
-
-Copy the skill file to your Claude skills directory:
-
-```bash
-mkdir -p ~/.claude/skills/perfect-readme
-cp skills/perfect-readme/SKILL.md ~/.claude/skills/perfect-readme/
-```
-
-The skill will be available in your next Claude Code session.
-
-<br>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
-  <img alt="" src="./assets/divider-dark.svg" width="100%">
-</picture>
-
-<br>
-
-## &nbsp;Usage
-
-Once installed, use the skill by asking Claude Code to create a README:
-
-```
-Create a README for my project
-```
-
-```
-/perfect-readme
-```
-
-```
-Make a stunning GitHub profile README for my account
-```
-
-The skill will:
-
-1. **Analyze** your project — code, dependencies, purpose
-2. **Choose an aesthetic direction** — tone, palette, typography
-3. **Generate SVG assets** — animated banners with dark/light theme support
-4. **Build the README** — with multi-column layouts, accordions, badges, and navigation
-5. **Deliver everything** — `README.md` + `assets/` directory, ready to push
 
 <br>
 
@@ -217,114 +159,73 @@ The skill will:
 ## &nbsp;Examples
 
 <details open>
-<summary><strong>Animated SVG Banner</strong></summary>
+<summary><strong>Usage</strong></summary>
 
 <br>
 
-Banners use CSS `@keyframes` inside `<foreignObject>` — gradient shifts, floating elements, pulsing glows. Custom Google Fonts load via `@import`. Both dark and light variants are generated automatically.
+Once installed, just ask Claude Code:
 
-This README's own banner is a live example — check [`assets/banner-dark.svg`](./assets/banner-dark.svg).
-
-</details>
-
-<details>
-<summary><strong>Feature Grid</strong></summary>
-
-<br>
-
-```html
-<table>
-<tr>
-<td align="center" width="33%">
-<img src="./assets/icon.svg" width="48"><br>
-<strong>Feature Name</strong><br>
-<sub>Short description of the feature</sub>
-</td>
-<!-- repeat for each feature -->
-</tr>
-</table>
+```
+Create a README for my project
+```
+```
+/perfect-readme
+```
+```
+Make a stunning GitHub profile README
 ```
 
-</details>
-
-<details>
-<summary><strong>API Documentation with Accordions</strong></summary>
-
-<br>
-
-```html
-<details>
-<summary><code>createReadme(options)</code></summary>
-
-Generates a complete README with all assets.
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `project` | `string` | Project name |
-| `tone` | `string` | Aesthetic direction |
-
-</details>
-```
+The skill analyzes your project, chooses an aesthetic direction, generates SVG assets with dark/light variants, and assembles everything into a production-ready README.
 
 </details>
 
 <details>
-<summary><strong>Gradient Dividers</strong></summary>
+<summary><strong>What GitHub allows &amp; strips</strong></summary>
 
 <br>
 
-Simple SVG files with a linear gradient — used between sections for visual rhythm. See [`assets/divider-dark.svg`](./assets/divider-dark.svg) for the implementation.
+**Allowed HTML:** `div`, `table`, `details`, `summary`, `picture`, `source`, `img`, `a`, `br`, `hr`, `kbd`, `sup`, `sub`, `code`, `pre`, `blockquote`, `p`, `span`, `h1`–`h6`, `ul`, `ol`, `li`, `dl`, `dt`, `dd`, `figure`, `figcaption`, `b`, `strong`, `i`, `em`, `del`, `ins`, `mark`, `small`
+
+**Allowed attributes:** `href`, `src`, `alt`, `width`, `height`, `align`, `valign`, `colspan`, `rowspan`, `open`, `srcset`, `media`, `type`
+
+**Stripped:** `style`, `class`, `id`, `<script>`, `<iframe>`, `<form>`, `<style>`, `<link>`, `<foreignObject>`, all event handlers, inline SVG
+
+**SVG via `<img>` — what survives:** native SVG elements, SMIL `<animate>`, `<linearGradient>`, `<pattern>`, `<filter>`, `<feGaussianBlur>`
+
+**SVG via `<img>` — what's stripped:** `<foreignObject>`, `<style>`, CSS `@keyframes`, `@import`, JavaScript, `:hover`
 
 </details>
 
-<br>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
-  <img alt="" src="./assets/divider-dark.svg" width="100%">
-</picture>
+<details>
+<summary><strong>Project structure</strong></summary>
 
 <br>
-
-## &nbsp;Project Structure
 
 ```
 PerfectReadme/
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin metadata
+│   └── plugin.json              # Plugin metadata
 ├── skills/
 │   └── perfect-readme/
-│       └── SKILL.md          # The skill definition
+│       └── SKILL.md              # Skill definition
 ├── assets/
-│   ├── banner-dark.svg       # Animated banner (dark theme)
-│   ├── banner-light.svg      # Animated banner (light theme)
-│   ├── before-after.svg      # Visual comparison
-│   ├── divider-dark.svg      # Section divider (dark)
-│   └── divider-light.svg     # Section divider (light)
+│   ├── banner-dark.svg           # Hero banner (dark)
+│   ├── banner-light.svg          # Hero banner (light)
+│   ├── features-dark.svg         # Feature cards (dark)
+│   ├── features-light.svg        # Feature cards (light)
+│   ├── steps-dark.svg            # Workflow timeline (dark)
+│   ├── steps-light.svg           # Workflow timeline (light)
+│   ├── install-dark.svg          # Install command (dark)
+│   ├── install-light.svg         # Install command (light)
+│   ├── before-after.svg          # Comparison visual
+│   ├── divider-dark.svg          # Section divider (dark)
+│   └── divider-light.svg         # Section divider (light)
+├── index.html                    # Landing page (GitHub Pages)
 ├── LICENSE
-└── README.md                 # You are here
+└── README.md                     # ← You are here
 ```
 
-<br>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
-  <img alt="" src="./assets/divider-dark.svg" width="100%">
-</picture>
-
-<br>
-
-## &nbsp;Design Philosophy
-
-This skill adapts the [frontend-design](https://github.com/anthropics/claude-code-plugins) skill's philosophy to the README medium:
-
-- **Bold aesthetic direction** — every README gets a unique visual identity, not a template
-- **Typography matters** — distinctive Google Fonts loaded inside SVGs, never system defaults
-- **Color with intent** — palettes matched to the project's domain and personality
-- **Motion with purpose** — subtle CSS animations that add polish without distraction
-- **Theme-aware** — every visual element supports both dark and light GitHub themes
+</details>
 
 <br>
 
@@ -333,12 +234,6 @@ This skill adapts the [frontend-design](https://github.com/anthropics/claude-cod
   <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
   <img alt="" src="./assets/divider-dark.svg" width="100%">
 </picture>
-
-<br>
-
-## &nbsp;License
-
-[MIT](./LICENSE)
 
 <br>
 
@@ -347,5 +242,5 @@ This skill adapts the [frontend-design](https://github.com/anthropics/claude-cod
 </p>
 
 <p align="center">
-  <sub>Built with the skill itself. This README is a live demo.</sub>
+  <sub>This README is a live demo — built entirely from SVG components assembled in markdown.<br>MIT &copy; 2026 Aleksandr Fefelov</sub>
 </p>

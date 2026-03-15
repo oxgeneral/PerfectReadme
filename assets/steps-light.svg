@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 200" width="840" height="200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f9ff"/>
+      <stop offset="100%" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="50%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="num-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="840" height="200" fill="url(#bg)"/>
+
+  <!-- connecting line -->
+  <rect x="200" y="55" width="440" height="2" fill="url(#line-grad)" opacity="0.2" rx="1">
+    <animate attributeName="opacity" values="0.12;0.3;0.12" dur="4s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Step 1 -->
+  <g>
+    <circle cx="170" cy="56" r="30" fill="#818cf8" opacity="0.06" filter="url(#num-glow)">
+      <animate attributeName="opacity" values="0.04;0.1;0.04" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="170" cy="56" r="30" fill="white" stroke="#818cf8" stroke-opacity="0.25" stroke-width="1.5"/>
+    <text x="170" y="63" text-anchor="middle" font-family="'Courier New', monospace" font-size="22" font-weight="700" fill="#4338ca">1</text>
+    <text x="170" y="108" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#1e1b4b">Analyze</text>
+    <text x="170" y="130" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#4338ca" fill-opacity="0.55">Reads your project's code,</text>
+    <text x="170" y="146" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#4338ca" fill-opacity="0.55">dependencies, and purpose.</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g>
+    <circle cx="420" cy="56" r="30" fill="#0891b2" opacity="0.06" filter="url(#num-glow)">
+      <animate attributeName="opacity" values="0.04;0.1;0.04" dur="4s" repeatCount="indefinite" begin="1.3s"/>
+    </circle>
+    <circle cx="420" cy="56" r="30" fill="white" stroke="#0891b2" stroke-opacity="0.25" stroke-width="1.5"/>
+    <text x="420" y="63" text-anchor="middle" font-family="'Courier New', monospace" font-size="22" font-weight="700" fill="#4338ca">2</text>
+    <text x="420" y="108" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#1e1b4b">Design</text>
+    <text x="420" y="130" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#4338ca" fill-opacity="0.55">Chooses a bold aesthetic —</text>
+    <text x="420" y="146" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#4338ca" fill-opacity="0.55">palette, typography, animations.</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g>
+    <circle cx="670" cy="56" r="30" fill="#a78bfa" opacity="0.06" filter="url(#num-glow)">
+      <animate attributeName="opacity" values="0.04;0.1;0.04" dur="4s" repeatCount="indefinite" begin="2.6s"/>
+    </circle>
+    <circle cx="670" cy="56" r="30" fill="white" stroke="#a78bfa" stroke-opacity="0.25" stroke-width="1.5"/>
+    <text x="670" y="63" text-anchor="middle" font-family="'Courier New', monospace" font-size="22" font-weight="700" fill="#4338ca">3</text>
+    <text x="670" y="108" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#1e1b4b">Generate</text>
+    <text x="670" y="130" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#4338ca" fill-opacity="0.55">Produces README.md + SVG</text>
+    <text x="670" y="146" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#4338ca" fill-opacity="0.55">assets. Ready to push.</text>
+  </g>
+</svg>

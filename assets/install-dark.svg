@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 120" width="840" height="120">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a12"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="cmd-border" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.15"/>
+    </linearGradient>
+    <filter id="glow" x="-10%" y="-30%" width="120%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="840" height="120" fill="url(#bg)"/>
+
+  <!-- subtle glow behind command -->
+  <ellipse cx="420" cy="60" rx="300" ry="50" fill="#6366f1" opacity="0.04" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.03;0.06;0.03" dur="5s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- command box -->
+  <rect x="120" y="25" width="600" height="50" rx="12" fill="#111120" stroke="url(#cmd-border)" stroke-width="1"/>
+
+  <!-- prompt symbol -->
+  <text x="148" y="56" font-family="'Courier New', monospace" font-size="14" font-weight="700" fill="#06b6d4">$</text>
+
+  <!-- command text -->
+  <text x="170" y="56" font-family="'Courier New', monospace" font-size="13" fill="#22d3ee">claude plugin add --from-github oxgeneral/PerfectReadme</text>
+
+  <!-- hint -->
+  <text x="420" y="100" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#a5b4fc" fill-opacity="0.4">Available immediately in your next Claude Code session</text>
+</svg>

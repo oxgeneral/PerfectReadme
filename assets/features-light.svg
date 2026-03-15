@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" width="840" height="380">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f9ff"/>
+      <stop offset="100%" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="icon-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.04"/>
+    </linearGradient>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#6366f1" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <rect width="840" height="380" fill="url(#bg)"/>
+
+  <!-- Card 1 -->
+  <g filter="url(#card-shadow)">
+    <rect x="20" y="16" width="392" height="164" rx="14" fill="white" stroke="#6366f1" stroke-opacity="0.1"/>
+    <rect x="20" y="16" width="392" height="2" rx="1" fill="url(#accent)" opacity="0.4">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="40" y="36" width="44" height="44" rx="10" fill="url(#icon-bg)" stroke="#6366f1" stroke-opacity="0.1"/>
+    <polygon points="62,46 76,58 62,70 48,58" fill="none" stroke="#4338ca" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="62" y1="70" x2="62" y2="62" stroke="#4338ca" stroke-width="1.5"/>
+    <polyline points="76,58 62,62 48,58" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+    <text x="40" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#1e1b4b">Animated SVG Banners</text>
+    <text x="40" y="126" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">Pure SVG with SMIL animations. Gradient shimmer,</text>
+    <text x="40" y="142" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">glow orbs, pulsing lines — no JavaScript needed.</text>
+    <rect x="40" y="154" width="100" height="20" rx="6" fill="#06b6d4" fill-opacity="0.06" stroke="#06b6d4" stroke-opacity="0.2"/>
+    <text x="90" y="168" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0891b2">&lt;animate&gt;</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g filter="url(#card-shadow)">
+    <rect x="428" y="16" width="392" height="164" rx="14" fill="white" stroke="#6366f1" stroke-opacity="0.1"/>
+    <rect x="428" y="16" width="392" height="2" rx="1" fill="url(#accent)" opacity="0.4">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite" begin="1s"/>
+    </rect>
+    <rect x="448" y="36" width="44" height="44" rx="10" fill="url(#icon-bg)" stroke="#6366f1" stroke-opacity="0.1"/>
+    <circle cx="470" cy="58" r="8" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="470" y1="47" x2="470" y2="44" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="470" y1="72" x2="470" y2="69" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="459" y1="58" x2="456" y2="58" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="484" y1="58" x2="481" y2="58" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="462.2" y1="50.2" x2="460" y2="48" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="477.8" y1="65.8" x2="480" y2="68" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="462.2" y1="65.8" x2="460" y2="68" stroke="#4338ca" stroke-width="1.5"/>
+    <line x1="477.8" y1="50.2" x2="480" y2="48" stroke="#4338ca" stroke-width="1.5"/>
+    <text x="448" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#1e1b4b">Dark &amp; Light Themes</text>
+    <text x="448" y="126" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">Every element supports both themes via &lt;picture&gt;</text>
+    <text x="448" y="142" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">with prefers-color-scheme. Zero JavaScript.</text>
+    <rect x="448" y="154" width="142" height="20" rx="6" fill="#06b6d4" fill-opacity="0.06" stroke="#06b6d4" stroke-opacity="0.2"/>
+    <text x="519" y="168" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0891b2">&lt;picture&gt; + media</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g filter="url(#card-shadow)">
+    <rect x="20" y="200" width="392" height="164" rx="14" fill="white" stroke="#6366f1" stroke-opacity="0.1"/>
+    <rect x="20" y="200" width="392" height="2" rx="1" fill="url(#accent)" opacity="0.4">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite" begin="2s"/>
+    </rect>
+    <rect x="40" y="220" width="44" height="44" rx="10" fill="url(#icon-bg)" stroke="#6366f1" stroke-opacity="0.1"/>
+    <rect x="50" y="230" width="10" height="10" rx="2" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+    <rect x="64" y="230" width="10" height="10" rx="2" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+    <rect x="50" y="244" width="10" height="10" rx="2" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+    <rect x="64" y="244" width="10" height="10" rx="2" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+    <text x="40" y="290" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#1e1b4b">Multi-Column Layouts</text>
+    <text x="40" y="310" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">HTML tables with width and align attributes for</text>
+    <text x="40" y="326" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">structured grids and side-by-side content.</text>
+    <rect x="40" y="338" width="100" height="20" rx="6" fill="#06b6d4" fill-opacity="0.06" stroke="#06b6d4" stroke-opacity="0.2"/>
+    <text x="90" y="352" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0891b2">&lt;table&gt;</text>
+  </g>
+
+  <!-- Card 4 -->
+  <g filter="url(#card-shadow)">
+    <rect x="428" y="200" width="392" height="164" rx="14" fill="white" stroke="#6366f1" stroke-opacity="0.1"/>
+    <rect x="428" y="200" width="392" height="2" rx="1" fill="url(#accent)" opacity="0.4">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite" begin="3s"/>
+    </rect>
+    <rect x="448" y="220" width="44" height="44" rx="10" fill="url(#icon-bg)" stroke="#6366f1" stroke-opacity="0.1"/>
+    <line x1="460" y1="252" x2="474" y2="238" stroke="#4338ca" stroke-width="1.5" stroke-linecap="round"/>
+    <polyline points="474,238 478,234 482,238 478,242" fill="none" stroke="#4338ca" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="458" y1="254" x2="462" y2="254" stroke="#4338ca" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="448" y="290" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#1e1b4b">Bold Design Philosophy</text>
+    <text x="448" y="310" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">Every README gets a unique aesthetic direction.</text>
+    <text x="448" y="326" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#4338ca" fill-opacity="0.6">Palettes matched to the project's domain.</text>
+    <rect x="448" y="338" width="130" height="20" rx="6" fill="#06b6d4" fill-opacity="0.06" stroke="#06b6d4" stroke-opacity="0.2"/>
+    <text x="513" y="352" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0891b2">design-first</text>
+  </g>
+</svg>

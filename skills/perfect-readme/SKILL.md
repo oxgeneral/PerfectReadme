@@ -230,80 +230,105 @@ Adapted from frontend-design philosophy for the README medium:
 - Generic "Built with" sections that add no value
 - Stock screenshot placeholders
 
+## Core Approach: SVG Component-Based Landing Pages
+
+The key insight: **build READMEs as landing pages assembled from SVG visual components**.
+
+Each section of the README is a standalone SVG file — a visual building block with its own gradients, animations, and layout. These SVG blocks are referenced in markdown via `<picture>` (for dark/light) or `<img>`, with markdown text and HTML tables providing structure between them.
+
+**This approach gives you:**
+- Full visual control inside each SVG (gradients, filters, animations, complex layouts)
+- Dark/light theme support per component
+- Landing-page-level visual quality
+- 100% GitHub compatibility (pure SVG survives camo proxy)
+
+### SVG Component Library
+
+Every README should be assembled from these component types:
+
+| Component | Purpose | Naming |
+|-----------|---------|--------|
+| **Hero Banner** | Full-width animated header with title, tagline, badges | `banner-dark.svg`, `banner-light.svg` |
+| **Feature Grid** | 2x2 or 3x1 card layout with icons, titles, descriptions | `features-dark.svg`, `features-light.svg` |
+| **Steps/Timeline** | Numbered workflow with connecting line | `steps-dark.svg`, `steps-light.svg` |
+| **Install Card** | Terminal-style command display | `install-dark.svg`, `install-light.svg` |
+| **Before/After** | Side-by-side visual comparison | `before-after.svg` |
+| **Divider** | Gradient line between sections | `divider-dark.svg`, `divider-light.svg` |
+| **Section Header** | Styled heading for a section | `header-{name}-dark.svg` |
+
+### Assembly Pattern
+
+```markdown
+<!-- Hero -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/banner-light.svg">
+  <img alt="Project Name" src="./assets/banner-dark.svg" width="100%">
+</picture>
+
+<p align="center"><strong>Tagline goes here</strong></p>
+<p align="center">
+  <a href="#features">Features</a> &bull; <a href="#install">Install</a> &bull; <a href="#usage">Usage</a>
+</p>
+
+<!-- Divider -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/divider-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/divider-light.svg">
+  <img alt="" src="./assets/divider-dark.svg" width="100%">
+</picture>
+
+## Section Title
+
+<!-- SVG visual component -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/features-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/features-light.svg">
+  <img alt="Features" src="./assets/features-dark.svg" width="100%">
+</picture>
+
+<!-- Markdown text between components -->
+Additional details in markdown...
+
+<!-- Accordion for extra content -->
+<details>
+<summary><strong>More details</strong></summary>
+Content here...
+</details>
+```
+
 ## Output Structure
 
 When creating a README, ALWAYS deliver:
 
-1. **`README.md`** — the main file with all markup
-2. **`assets/` directory** with:
-   - `banner.svg` (or `header.svg`) — animated SVG hero banner with dark/light theme support
-   - `banner-dark.svg` + `banner-light.svg` — if using `<picture>` approach instead
-   - Any additional SVG section headers or visual elements
+1. **`README.md`** — assembled from SVG components + markdown
+2. **`assets/` directory** with ALL SVG components in dark + light variants:
+   - `banner-dark.svg` + `banner-light.svg` — animated hero
+   - `features-dark.svg` + `features-light.svg` — feature grid
+   - `steps-dark.svg` + `steps-light.svg` — workflow timeline
+   - `install-dark.svg` + `install-light.svg` — install command
+   - `divider-dark.svg` + `divider-light.svg` — section dividers
+   - Additional section-specific SVGs as needed
 3. **Brief explanation** of the design choices made
 
 ## Workflow
 
 1. **Gather context** — read the project's code, package.json, existing README, understand what it does
-2. **Choose aesthetic direction** — based on project type, audience, and tone
-3. **Design the hero banner SVG** — this is the signature element, spend the most creative energy here
-4. **Structure the layout** — plan sections, navigation, columns, accordions
-5. **Write content** — concise, scannable, with personality matching the aesthetic
-6. **Add dynamic elements** — badges, stats, theme support
-7. **Polish** — spacing, alignment, visual rhythm, consistency check
+2. **Choose aesthetic direction** — palette, tone, animation style
+3. **Design SVG components** — start with hero banner, then features, steps, install
+4. **Create dark AND light variants** of every SVG component
+5. **Assemble README** — arrange SVG blocks with markdown text, tables, and accordions between them
+6. **Polish** — spacing, visual rhythm, consistency across all components
 
-## Examples of Section Patterns
+## SVG Component Design Rules
 
-### Hero Section Pattern
-```
-[Animated SVG Banner with dark/light support]
-[Centered one-liner tagline]
-[Badge row — version, license, build status]
-[Navigation links]
-```
+- **viewBox**: always set `viewBox` and explicit `width`/`height` on root `<svg>`
+- **Width**: use 840px as standard width for all components (fits GitHub's content area)
+- **Height**: varies per component — banners ~280px, feature grids ~380px, steps ~200px, dividers ~2px
+- **Fonts**: use system font stacks (`'Segoe UI', Arial, sans-serif` for display, `'Courier New', monospace` for code)
+- **Colors**: define a cohesive palette in `<defs>` as `<linearGradient>` elements, reuse across all components
+- **Animations**: SMIL `<animate>` only — gradient shimmer, opacity pulsing, position drift. Keep cycles 3-8s, subtle
+- **Filters**: `<feGaussianBlur>` for glow effects, `<feDropShadow>` for card shadows
+- **Patterns**: `<pattern>` for grid/dot backgrounds
 
-### Feature Grid Pattern
-```html
-<table>
-<tr>
-<td align="center" width="33%">
-<img src="./assets/icon1.svg" width="48"><br>
-<strong>Feature 1</strong><br>
-<sub>Brief description</sub>
-</td>
-<td align="center" width="33%">
-<img src="./assets/icon2.svg" width="48"><br>
-<strong>Feature 2</strong><br>
-<sub>Brief description</sub>
-</td>
-<td align="center" width="33%">
-<img src="./assets/icon3.svg" width="48"><br>
-<strong>Feature 3</strong><br>
-<sub>Brief description</sub>
-</td>
-</tr>
-</table>
-```
-
-### Quick Start Pattern
-```
-<details open>
-<summary><h3>Quick Start</h3></summary>
-
-\`\`\`bash
-npm install package-name
-\`\`\`
-
-</details>
-```
-
-### API Reference Pattern (Accordion)
-```
-<details>
-<summary><code>methodName(args)</code> — brief description</summary>
-
-Full documentation with examples.
-
-</details>
-```
-
-Remember: Claude is capable of extraordinary creative work. Don't hold back — show what can truly be created when committing fully to a distinctive vision. Every README should make the viewer stop scrolling and think "wow, this project clearly cares about quality."
+Remember: Claude is capable of extraordinary creative work. The goal is to make every README look like a designed landing page — assembled from beautiful SVG visual components, with the polish and intentionality of a real website.
