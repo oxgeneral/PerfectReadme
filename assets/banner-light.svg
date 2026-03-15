@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="280">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&amp;family=Instrument+Serif&amp;display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        .banner {
+          width: 840px; height: 280px;
+          background: #fafbff;
+          position: relative; overflow: hidden;
+          display: flex; align-items: center; justify-content: center;
+          flex-direction: column; gap: 16px;
+        }
+
+        .grid {
+          position: absolute; inset: 0;
+          background-image:
+            linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+          background-size: 40px 40px;
+        }
+
+        .glow {
+          position: absolute;
+          width: 400px; height: 400px;
+          border-radius: 50%;
+          filter: blur(120px);
+          opacity: 0.25;
+          animation: drift 8s ease-in-out infinite;
+        }
+
+        .glow-1 {
+          background: #a5b4fc;
+          top: -120px; left: 100px;
+          animation-delay: 0s;
+        }
+
+        .glow-2 {
+          background: #67e8f9;
+          bottom: -150px; right: 80px;
+          animation-delay: -4s;
+        }
+
+        .glow-3 {
+          background: #c4b5fd;
+          top: 50px; right: 200px;
+          width: 200px; height: 200px;
+          animation-delay: -2s;
+          opacity: 0.15;
+        }
+
+        @keyframes drift {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          25% { transform: translate(30px, -20px) scale(1.1); }
+          50% { transform: translate(-20px, 15px) scale(0.95); }
+          75% { transform: translate(15px, 25px) scale(1.05); }
+        }
+
+        .content { position: relative; z-index: 2; text-align: center; }
+
+        .title {
+          font-family: 'Space Mono', monospace;
+          font-size: 52px; font-weight: 700;
+          background: linear-gradient(135deg, #312e81 0%, #4338ca 30%, #0891b2 70%, #06b6d4 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          letter-spacing: -2px;
+          animation: shimmer 4s ease-in-out infinite;
+          background-size: 200% 200%;
+        }
+
+        @keyframes shimmer {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+          font-family: 'Instrument Serif', serif;
+          font-size: 20px;
+          color: rgba(67, 56, 202, 0.6);
+          font-style: italic;
+          letter-spacing: 0.5px;
+        }
+
+        .line {
+          width: 120px; height: 1px;
+          background: linear-gradient(90deg, transparent, #6366f1, transparent);
+          animation: pulse-line 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-line {
+          0%, 100% { opacity: 0.4; width: 120px; }
+          50% { opacity: 1; width: 200px; }
+        }
+
+        .badge-row {
+          display: flex; gap: 8px; margin-top: 4px;
+          justify-content: center;
+        }
+
+        .badge {
+          font-family: 'Space Mono', monospace;
+          font-size: 10px;
+          padding: 4px 10px;
+          border-radius: 4px;
+          border: 1px solid rgba(99, 102, 241, 0.25);
+          color: rgba(67, 56, 202, 0.7);
+          background: rgba(99, 102, 241, 0.06);
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+      </style>
+      <div class="banner">
+        <div class="grid"></div>
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+        <div class="content">
+          <div class="title">PerfectReadme</div>
+          <div class="line" style="margin: 8px auto;"></div>
+          <div class="subtitle">craft stunning GitHub READMEs that feel like websites</div>
+          <div class="badge-row">
+            <span class="badge">svg animations</span>
+            <span class="badge">dark/light</span>
+            <span class="badge">layouts</span>
+            <span class="badge">claude skill</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </foreignObject>
+</svg>

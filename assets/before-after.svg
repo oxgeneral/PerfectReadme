@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="340">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        .container {
+          width: 840px; height: 340px;
+          display: flex; gap: 24px;
+          padding: 24px;
+          background: #0a0a0f;
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        .card {
+          flex: 1;
+          border-radius: 12px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .before {
+          background: #111118;
+          border: 1px solid rgba(255,255,255,0.06);
+          padding: 20px;
+          display: flex; flex-direction: column; gap: 8px;
+        }
+
+        .before .label {
+          font-family: 'Space Mono', monospace;
+          font-size: 10px;
+          color: rgba(255,255,255,0.3);
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 8px;
+        }
+
+        .before .line {
+          height: 8px;
+          border-radius: 4px;
+          background: rgba(255,255,255,0.05);
+        }
+
+        .before .line.title-line { width: 60%; height: 14px; background: rgba(255,255,255,0.08); margin-bottom: 4px; }
+        .before .line.short { width: 40%; }
+        .before .line.med { width: 75%; }
+        .before .line.long { width: 90%; }
+
+        .after {
+          background: linear-gradient(160deg, #0f0c29, #1a1145);
+          border: 1px solid rgba(99, 102, 241, 0.2);
+          padding: 20px;
+          display: flex; flex-direction: column; gap: 6px;
+        }
+
+        .after .label {
+          font-family: 'Space Mono', monospace;
+          font-size: 10px;
+          color: rgba(99, 102, 241, 0.6);
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 8px;
+        }
+
+        .after .hero {
+          height: 48px;
+          border-radius: 8px;
+          background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.15));
+          border: 1px solid rgba(99,102,241,0.1);
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 4px;
+          animation: hero-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes hero-pulse {
+          0%, 100% { border-color: rgba(99,102,241,0.1); }
+          50% { border-color: rgba(99,102,241,0.3); }
+        }
+
+        .after .hero-text {
+          font-family: 'Space Mono', monospace;
+          font-size: 14px; font-weight: 700;
+          background: linear-gradient(90deg, #a5b4fc, #22d3ee);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .after .badges {
+          display: flex; gap: 4px; margin-bottom: 4px;
+          justify-content: center;
+        }
+
+        .after .badge {
+          font-size: 7px;
+          padding: 2px 6px;
+          border-radius: 3px;
+          background: rgba(99,102,241,0.1);
+          color: rgba(165,180,252,0.7);
+          border: 1px solid rgba(99,102,241,0.15);
+        }
+
+        .after .cols {
+          display: flex; gap: 6px; flex: 1;
+        }
+
+        .after .col {
+          flex: 1;
+          border-radius: 6px;
+          background: rgba(99,102,241,0.04);
+          border: 1px solid rgba(99,102,241,0.08);
+          padding: 8px;
+          display: flex; flex-direction: column; gap: 4px;
+        }
+
+        .after .col-line {
+          height: 5px;
+          border-radius: 3px;
+          background: rgba(165,180,252,0.08);
+        }
+
+        .after .col-line.accent { background: linear-gradient(90deg, rgba(99,102,241,0.2), rgba(6,182,212,0.2)); width: 70%; }
+
+        .arrow {
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 10;
+        }
+
+        .arrow-circle {
+          width: 36px; height: 36px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #6366f1, #06b6d4);
+          display: flex; align-items: center; justify-content: center;
+          animation: arrow-glow 2s ease-in-out infinite;
+          box-shadow: 0 0 20px rgba(99,102,241,0.4);
+        }
+
+        @keyframes arrow-glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(99,102,241,0.3); }
+          50% { box-shadow: 0 0 30px rgba(99,102,241,0.6); }
+        }
+
+        .arrow-icon {
+          color: white;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        @media (prefers-color-scheme: light) {
+          .container { background: #fafbff; }
+          .before { background: #f1f5f9; border-color: rgba(0,0,0,0.06); }
+          .before .label { color: rgba(0,0,0,0.3); }
+          .before .line { background: rgba(0,0,0,0.06); }
+          .before .line.title-line { background: rgba(0,0,0,0.1); }
+          .after { background: linear-gradient(160deg, #eef2ff, #f0f9ff); border-color: rgba(99,102,241,0.2); }
+          .after .label { color: rgba(67,56,202,0.5); }
+          .after .hero { background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(6,182,212,0.08)); }
+          .after .hero-text { background: linear-gradient(90deg, #4338ca, #0891b2); -webkit-background-clip: text; background-clip: text; }
+          .after .badge { background: rgba(99,102,241,0.06); color: rgba(67,56,202,0.6); border-color: rgba(99,102,241,0.15); }
+          .after .col { background: rgba(99,102,241,0.03); border-color: rgba(99,102,241,0.08); }
+          .after .col-line { background: rgba(67,56,202,0.06); }
+          .after .col-line.accent { background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(6,182,212,0.12)); }
+        }
+      </style>
+      <div class="container">
+        <div class="card before">
+          <div class="label">Before</div>
+          <div class="line title-line"></div>
+          <div class="line long"></div>
+          <div class="line med"></div>
+          <div class="line long"></div>
+          <div class="line short"></div>
+          <div class="line med"></div>
+          <div class="line long"></div>
+          <div class="line short"></div>
+          <div class="line med"></div>
+          <div class="line long"></div>
+          <div class="line short"></div>
+          <div class="line med"></div>
+          <div class="line long"></div>
+          <div class="line short"></div>
+        </div>
+        <div style="position:relative; display:flex; align-items:center;">
+          <div class="arrow">
+            <div class="arrow-circle">
+              <span class="arrow-icon">&rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="card after">
+          <div class="label">After</div>
+          <div class="hero">
+            <span class="hero-text">Project Name</span>
+          </div>
+          <div class="badges">
+            <span class="badge">v1.0</span>
+            <span class="badge">MIT</span>
+            <span class="badge">PASSING</span>
+          </div>
+          <div class="cols">
+            <div class="col">
+              <div class="col-line accent"></div>
+              <div class="col-line" style="width:85%"></div>
+              <div class="col-line" style="width:60%"></div>
+              <div class="col-line" style="width:75%"></div>
+            </div>
+            <div class="col">
+              <div class="col-line accent"></div>
+              <div class="col-line" style="width:70%"></div>
+              <div class="col-line" style="width:90%"></div>
+              <div class="col-line" style="width:50%"></div>
+            </div>
+            <div class="col">
+              <div class="col-line accent"></div>
+              <div class="col-line" style="width:80%"></div>
+              <div class="col-line" style="width:55%"></div>
+              <div class="col-line" style="width:70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </foreignObject>
+</svg>
