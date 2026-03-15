@@ -43,62 +43,77 @@ Before writing ANY markdown, commit to a BOLD aesthetic direction:
 
 ## Power Techniques
 
-### 1. SVG with `<foreignObject>` — THE Key Technique
+### 1. Pure SVG with SMIL Animations — THE Key Technique
 
-This is the PRIMARY tool for achieving website-like aesthetics. Create `.svg` files that contain full HTML + CSS inside `<foreignObject>`. This bypasses GitHub's CSS restrictions entirely.
+This is the PRIMARY tool for achieving website-like aesthetics. Create `.svg` files using native SVG elements with SMIL animations. GitHub proxies SVG images through `camo.githubusercontent.com` which **strips `<foreignObject>` and all CSS/HTML inside it**. Only pure SVG elements survive.
+
+**CRITICAL: `<foreignObject>` does NOT work on GitHub.** GitHub's image proxy sanitizes it. Use native SVG only.
 
 ```xml
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400">
-  <foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=FONT_NAME&display=swap');
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <defs>
+    <!-- Gradients for colors -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="100%" stop-color="#111127"/>
+    </linearGradient>
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a5b4fc"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+      <!-- Animated gradient shift -->
+      <animate attributeName="x1" values="-100%;0%;-100%" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="0%;100%;0%" dur="4s" repeatCount="indefinite"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40" result="blur"/>
+      <feComposite in="blur" operator="over"/>
+    </filter>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6366f1" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <!-- Background + grid -->
+  <rect width="800" height="200" fill="url(#bg)"/>
+  <rect width="800" height="200" fill="url(#grid)"/>
 
-        .banner {
-          width: 800px; height: 400px;
-          background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-          display: flex; align-items: center; justify-content: center;
-          font-family: 'FONT_NAME', sans-serif;
-          color: white; position: relative; overflow: hidden;
-        }
+  <!-- Animated glow orbs -->
+  <ellipse cx="200" cy="50" rx="150" ry="150" fill="#6366f1" opacity="0.15" filter="url(#glow)">
+    <animate attributeName="cx" values="200;240;180;200" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.15;0.22;0.15" dur="8s" repeatCount="indefinite"/>
+  </ellipse>
 
-        /* CSS animations work fully here */
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
+  <!-- Title text with gradient fill -->
+  <text x="400" y="105" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif"
+        font-size="48" font-weight="800" fill="url(#title-grad)" letter-spacing="-2">
+    Project Name
+  </text>
 
-        .title {
-          font-size: 48px; font-weight: 900;
-          animation: float 3s ease-in-out infinite;
-        }
-
-        /* Dark/light theme detection works inside SVG */
-        @media (prefers-color-scheme: light) {
-          .banner { background: linear-gradient(135deg, #f5f7fa, #c3cfe2); color: #1a1a2e; }
-        }
-      </style>
-      <div class="banner">
-        <div class="title">Project Name</div>
-      </div>
-    </div>
-  </foreignObject>
+  <!-- Animated decorative line -->
+  <rect x="340" y="125" width="120" height="1" fill="#6366f1" rx="0.5">
+    <animate attributeName="width" values="80;160;80" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="x" values="360;320;360" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
+  </rect>
 </svg>
 ```
 
 Then reference in README: `![Banner](./assets/banner.svg)`
 
 **SVG Design Guidelines:**
-- Use Google Fonts via `@import` for distinctive typography — NEVER default to system fonts
-- CSS `@keyframes` animations auto-play — use for floating, pulsing, gradient shifts, typing effects
-- SMIL `<animate>` and `<animateTransform>` also work for path animations
-- `prefers-color-scheme` media query works — always support dark AND light themes
-- Set explicit `width` and `height` on the SVG root
-- `:hover` does NOT work (SVGs render as `<img>` elements, no interaction passes through)
-- JavaScript does NOT work inside SVG on GitHub
-- Keep SVG file sizes reasonable — under 100KB for fast loading
+- Use ONLY native SVG elements: `<text>`, `<rect>`, `<circle>`, `<ellipse>`, `<path>`, `<polygon>`, `<line>`
+- Use `<defs>` for `<linearGradient>`, `<radialGradient>`, `<pattern>`, `<filter>` definitions
+- Use SMIL `<animate>` and `<animateTransform>` for animations — these survive GitHub's proxy
+- Animate gradient `x1`/`x2` for shimmer effects, element `cx`/`cy` for floating, `opacity` for pulsing
+- Use `<feGaussianBlur>` filters for glow effects
+- Use `<pattern>` for grid/dot backgrounds
+- Set `viewBox` and explicit `width`/`height` on the SVG root
+- `<foreignObject>`, CSS `@keyframes`, `@import`, `<style>`, JavaScript — ALL stripped by GitHub
+- `:hover` does NOT work (SVGs render as `<img>` elements)
+- Keep SVG file sizes under 100KB for fast loading
+- For dark/light themes — create TWO separate SVG files and use `<picture>` in README
 
 ### 2. Dark/Light Theme Images
 
