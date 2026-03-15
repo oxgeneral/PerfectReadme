@@ -343,5 +343,9 @@ This skill adapts the [frontend-design](https://github.com/anthropics/claude-cod
 <br>
 
 <p align="center">
+  <a href="https://oxgeneral.github.io/PerfectReadme"><strong>View Landing Page &rarr;</strong></a>
+</p>
+
+<p align="center">
   <sub>Built with the skill itself. This README is a live demo.</sub>
 </p>
